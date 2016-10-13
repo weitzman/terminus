@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+$script_name = 'bin/terminus.php';
+
+$commands = [
+    'auth:login --email=tesladethray@gmail.com',
+    'auth:whoami',
+    'site:list',
+    'auth:logout',
+];
+
+//$prompt = 'Press [Enter] to continue, [r] to repeat, or [q] to quit.';
+$prompt = '-';
+
+for ($i = 0; $i < count($commands); $i++) {
+    $input = '';
+    if ($i > 0) {
+        $input = readline($prompt);
+    }
+    if ($input == 'q') {
+        return;
+    }
+    $output = '';
+    $command = $commands[$i];
+    echo "terminus $command\n";
+    exec("$script_name $command", $output, $exit_code);
+    if (!empty($output)) {
+        echo implode(PHP_EOL, $output) . PHP_EOL;
+    }
+}
