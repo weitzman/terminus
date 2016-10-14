@@ -18,6 +18,7 @@ use Pantheon\Terminus\Models\Instrument;
 use Pantheon\Terminus\Models\MachineToken;
 use Pantheon\Terminus\Models\Organization;
 use Pantheon\Terminus\Models\OrganizationSiteMembership;
+use Pantheon\Terminus\Models\OrganizationUserMembership;
 use Pantheon\Terminus\Models\SavedToken;
 use Pantheon\Terminus\Models\SshKey;
 use Pantheon\Terminus\Models\UserOrganizationMembership;
@@ -35,7 +36,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Terminus\Caches\FileCache;
 use Terminus\Collections\Sites;
 use Pantheon\Terminus\Models\User;
-use Terminus\Models\OrganizationUserMembership;
 use VCR\VCR;
 
 class Runner

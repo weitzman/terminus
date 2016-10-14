@@ -16,6 +16,10 @@ class UserOrganizationMembership extends TerminusModel implements ContainerAware
      * @var User
      */
     public $user;
+    /**
+     * @var \stdClass
+     */
+    protected $organization_info;
 
     /**
      * Object constructor
@@ -27,7 +31,18 @@ class UserOrganizationMembership extends TerminusModel implements ContainerAware
     {
         parent::__construct($attributes, $options);
         $this->user = $options['collection']->getUser();
-        $this->organization = $this->getContainer()->get(Organization::class, [$attributes->organization]);
-        $this->organization->memberships = [$this,];
+        $this->organization_info = $attributes->organization;
+    }
+
+    /**
+     * @return Organization
+     */
+    public function getOrganization()
+    {
+        if (empty($this->organization)) {
+            $this->organization = $this->getContainer()->get(Organization::class, [$this->organization_info]);
+            $this->organization->memberships = [$this,];
+        }
+        return $this->organization;
     }
 }
