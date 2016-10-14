@@ -8,6 +8,7 @@ use League\Container\ContainerInterface;
 use Pantheon\Terminus\Collections\Instruments;
 use Pantheon\Terminus\Collections\MachineTokens;
 use Pantheon\Terminus\Collections\OrganizationSiteMemberships;
+use Pantheon\Terminus\Collections\OrganizationUserMemberships;
 use Pantheon\Terminus\Collections\SavedTokens;
 use Pantheon\Terminus\Collections\SshKeys;
 use Pantheon\Terminus\Collections\UserOrganizationMemberships;
@@ -16,6 +17,7 @@ use Pantheon\Terminus\Collections\Workflows;
 use Pantheon\Terminus\Models\Instrument;
 use Pantheon\Terminus\Models\MachineToken;
 use Pantheon\Terminus\Models\Organization;
+use Pantheon\Terminus\Models\OrganizationSiteMembership;
 use Pantheon\Terminus\Models\SavedToken;
 use Pantheon\Terminus\Models\SshKey;
 use Pantheon\Terminus\Models\UserOrganizationMembership;
@@ -33,6 +35,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Terminus\Caches\FileCache;
 use Terminus\Collections\Sites;
 use Pantheon\Terminus\Models\User;
+use Terminus\Models\OrganizationUserMembership;
 use VCR\VCR;
 
 class Runner
@@ -136,6 +139,9 @@ class Runner
         $container->add(UserOrganizationMemberships::class);
         $container->add(UserOrganizationMembership::class);
         $container->add(OrganizationSiteMemberships::class);
+        $container->add(OrganizationSiteMembership::class);
+        $container->add(OrganizationUserMemberships::class);
+        $container->add(OrganizationUserMembership::class);
         $container->add(Organization::class);
 
         $container->share('sites', Sites::class);
