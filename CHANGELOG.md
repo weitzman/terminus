@@ -1,9 +1,13 @@
 #Change Log
 All notable changes to this project starting with the 0.6.0 release will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org)
 
-## 0.13.x
+## 0.13.4
 ### Changed
 - Branched 0.x from master, removed 1.x work.
+
+### Fixed
+- 0.13.x versions will from now on carry the '0.x' tag, which fixes the error which will appear once the divergent master branch updates its version number. (#1316)
+- A failure in checking the version number will no longer generate an error message. (#1316)
 
 ## [0.13.3] - 2016-10-07
 ### Added

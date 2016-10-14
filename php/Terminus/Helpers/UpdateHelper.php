@@ -17,11 +17,13 @@ class UpdateHelper extends TerminusHelper
     public function getCurrentVersion()
     {
         $request  = new Request();
-        $url      = 'https://api.github.com/repos/pantheon-systems/terminus/releases';
-        $url     .= '?per_page=1';
-        $response = $request->request($url, ['absolute_url' => true]);
-        $release  = array_shift($response['data']);
-        $cache    = new FileCache();
+        $url = 'https://api.github.com/repos/pantheon-systems/terminus/releases/tags/0.x?per_page=1';
+        try {
+            $release = $request->request($url, ['absolute_url' => true,])['data'];
+        } catch (\Exception $e) {
+            return;
+        }
+        $cache = new FileCache();
         $cache->putData(
             'latest_release',
             ['version' => $release->name, 'check_date' => time(),]
